@@ -1,0 +1,43 @@
+name: Sonar Code Coverage
+on:
+  # trigger manually. Can be used to validate feature branches before open pull request
+  workflow_dispatch:
+    inputs:
+      codecoveragetool:
+        type: choice
+        description: Code Coverage Tool
+        required: true
+        default: dotnet-coverage
+        options:
+          - dotnet-coverage
+          - dotCover
+          - coverlet
+
+  push: 
+    branches:
+      - master
+      
+jobs:
+  sonarqubeV1:
+    runs-on: windows-latest
+   
+    steps:     
+      - name: long path
+        shell: pwsh
+        run: git config --system core.longpaths true
+
+      - name: Checkout
+        uses: actions/checkout@v3
+                    
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      - name: Install NuGet
+        run: |
+          nuget restore WebAppFramework.sln
+
+      - name: Build for Release
+        run: msbuild /p:Configuration=Release WebAppFramework.sln
+
+      #- name: Run Test for solution
+        #run: msbuild /p:Configuration=Release WebAppFramework.sln
