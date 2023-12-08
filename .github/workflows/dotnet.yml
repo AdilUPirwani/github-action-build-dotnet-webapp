@@ -40,7 +40,7 @@ jobs:
         run: msbuild /p:Configuration=Release WebAppFramework.sln
 
       - name: Ms Test
-        run: dotnet test WebAppFramework.sln
+        run: msbuild test WebAppFramework.sln
 
 
       #- name: Run Test for solution
