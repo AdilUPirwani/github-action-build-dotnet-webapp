@@ -39,12 +39,9 @@ jobs:
       - name: Build for Release
         run: msbuild /p:Configuration=Release WebAppFramework.sln
 
-      - name: Run vstests
-        uses: microsoft/vstest-action@v1.0.0
-        with:
-          testAssembly: WebAppFramework.Unit.Tests.dll
-          searchFolder: .\WebAppFramework.Unit.Tests.dll\bin\Release\
-          runInParallel: true
+      - name: Ms Test
+        run: dotnet test WebAppFramework.sln
+
 
       #- name: Run Test for solution
         #run: msbuild /p:Configuration=Release WebAppFramework.sln
