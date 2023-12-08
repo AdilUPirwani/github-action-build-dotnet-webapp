@@ -46,8 +46,7 @@ jobs:
       - name: Test Case Workers
         id: run_vstest
         working-directory: WebAppFramework.Unit.Tests\bin\Debug
-        run: vstest.console.exe .\WebAppFramework.Unit.Tests.dll /Tests:Get,ValuesControllerTest
-
+        run: vstest.console.exe .\WebAppFramework.Unit.Tests.dll
       
 
 
