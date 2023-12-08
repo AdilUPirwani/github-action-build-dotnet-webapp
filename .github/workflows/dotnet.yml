@@ -39,8 +39,16 @@ jobs:
       - name: Build for Release
         run: msbuild /p:Configuration=Release WebAppFramework.sln
 
-      - name: Ms Test
-        run: mstest WebAppFramework.sln
+      - name: Setup VSTest and add to PATH
+        uses: darenm/Setup-VSTest@v1
+        id: setup_vstest
+        
+      - name: Test Case Workers
+        id: run_vstest
+        working-directory: WebAppFramework.Unit.Tests\bin\Debug
+        run: vstest.console.exe .\WebAppFramework.Unit.Tests.dll /Tests:Get,ValuesControllerTest
+
+      
 
 
       #- name: Run Test for solution
