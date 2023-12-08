@@ -40,7 +40,7 @@ jobs:
         run: msbuild /p:Configuration=Release WebAppFramework.sln
 
       - name: Ms Test
-        run: msbuild test WebAppFramework.sln
+        run: mstest.exe /testcontainer:WebAppFramework.Unit.Tests.dll
 
 
       #- name: Run Test for solution
